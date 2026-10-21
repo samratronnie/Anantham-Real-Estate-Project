@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anantham | Buy, Sell & Rent</title>
+
+    <link rel="stylesheet" href="Anantham Style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Anantham</div>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Properties</a></li>
+                <li><a href="#">Vehicles</a></li>
+                <li><a href="#">Household</a></li>
+                <li><a href="#">Curios</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <button class="post-btn">Post Listing</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Buy, Sell & Rent Anything Legal</h1>
+
+            <p>
+                Properties, Cars, Bikes, Household Products,
+                Curios and Antiques in one trusted marketplace.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn">Browse Listings</button>
+                <button class="secondary-btn">Post Property</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="search-section">
+
+        <h2>Search Listings</h2>
+
+        <div class="search-box">
+
+            <input type="text" placeholder="Search by Keywords">
+
+            <select>
+                <option>All Categories</option>
+                <option>Land</option>
+                <option>House</option>
+                <option>Car</option>
+                <option>Bike</option>
+                <option>Household</option>
+            </select>
+
+            <button>Search</button>
+
+        </div>
+
+    </section>
+
+    <section class="categories">
+
+        <h2>Popular Categories</h2>
+
+        <div class="category-grid">
+
+            <div class="card">🏠 Land & House</div>
+            <div class="card">🚗 Cars</div>
+            <div class="card">🏍 Bikes</div>
+            <div class="card">🏢 Commercial</div>
+            <div class="card">🪑 Household</div>
+            <div class="card">🏺 Curios</div>
+
+        </div>
+
+    </section>
+
+    <section class="featured">
+
+        <h2>Featured Listings</h2>
+
+        <div class="listing-grid">
+
+            <div class="listing-card">
+
+                <img src="https://picsum.photos/300/200" alt="property">
+
+                <h3>Luxury House</h3>
+
+                <p>Kolkata, West Bengal</p>
+
+                <h4>₹75 Lakhs</h4>
+
+                <button onclick="openAppointment()">
+                    Book Appointment
+                </button>
+
+            </div>
+
+            <div class="listing-card">
+
+                <img src="https://picsum.photos/301/200" alt="car">
+
+                <h3>Used SUV</h3>
+
+                <p>Delhi</p>
+
+                <h4>₹12 Lakhs</h4>
+
+                <button onclick="openAppointment()">
+                    Book Appointment
+                </button>
+
+            </div>
+
+            <div class="listing-card">
+
+                <img src="https://picsum.photos/302/200" alt="bike">
+
+                <h3>Royal Enfield</h3>
+
+                <p>Bangalore</p>
+
+                <h4>₹1.5 Lakhs</h4>
+
+                <button onclick="openAppointment()">
+                    Book Appointment
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="plans">
+
+        <h2>Seller Subscription</h2>
+
+        <div class="plan-card">
+
+            <h3>Basic Plan</h3>
+
+            <h1>₹199 / Month</h1>
+
+            <ul>
+                <li>25 Active Listings</li>
+                <li>Appointment Management</li>
+                <li>Lead Generation</li>
+                <li>Dashboard Access</li>
+            </ul>
+
+        </div>
+
+    </section>
+
+    <section class="commission">
+
+        <h2>Commission Policy</h2>
+
+        <p>
+            Successful deals completed through Anantham will attract
+            only <strong>1.5% Commission</strong> of the final transaction value.
+        </p>
+
+    </section>
+
+    <footer>
+
+        <h3>Anantham Marketplace</h3>
+
+        <p>
+            Connecting Buyers, Sellers and Brokers Across India
+        </p>
+
+    </footer>
+
+    <div class="modal" id="appointmentModal">
+
+        <div class="modal-content">
+
+            <span class="close-btn" onclick="closeAppointment()">&times;</span>
+
+            <h2>Book Appointment</h2>
+
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email">
+            <input type="tel" placeholder="Mobile Number">
+            <input type="date">
+
+            <button>Submit Request</button>
+
+        </div>
+
+    </div>
+
+    <script src="Anantham Script.js"></script>
+
+</body>
+
+</html>

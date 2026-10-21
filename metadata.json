@@ -1,0 +1,6 @@
+{
+  "name": "Anantham - Buy, Sell & Rent Marketplace",
+  "description": "Connecting buyers, sellers, and brokers across India with real-time dynamic button event messaging, live form validation, and instant multi-device Firebase Firestore database synchronization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

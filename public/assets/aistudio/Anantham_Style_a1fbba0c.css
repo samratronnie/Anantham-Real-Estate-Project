@@ -1,0 +1,217 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f8f9fa;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:#1c2331;
+color:white;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#f9b234;
+}
+
+nav ul{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+}
+
+.post-btn{
+background:#f9b234;
+border:none;
+padding:10px 20px;
+cursor:pointer;
+border-radius:5px;
+}
+
+.hero{
+height:80vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(rgba(0,0,0,.6),
+rgba(0,0,0,.6)),
+url('https://images.unsplash.com/photo-1560518883-ce09059eeffa');
+background-size:cover;
+color:white;
+text-align:center;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:20px;
+margin-bottom:25px;
+}
+
+.primary-btn,
+.secondary-btn{
+padding:12px 25px;
+border:none;
+margin:10px;
+cursor:pointer;
+border-radius:5px;
+}
+
+.primary-btn{
+background:#f9b234;
+}
+
+.secondary-btn{
+background:white;
+}
+
+section{
+padding:60px 10%;
+}
+
+.search-box{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.search-box input,
+.search-box select{
+padding:12px;
+flex:1;
+}
+
+.search-box button{
+padding:12px 20px;
+background:#1c2331;
+color:white;
+border:none;
+}
+
+.category-grid,
+.listing-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.card{
+background:white;
+padding:40px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.listing-card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.listing-card img{
+width:100%;
+}
+
+.listing-card h3,
+.listing-card p,
+.listing-card h4{
+padding:10px;
+}
+
+.listing-card button{
+margin:10px;
+padding:10px 15px;
+background:#1c2331;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.plan-card{
+background:white;
+padding:40px;
+text-align:center;
+max-width:450px;
+margin:auto;
+border-radius:10px;
+}
+
+.plan-card ul{
+list-style:none;
+margin-top:20px;
+}
+
+.plan-card li{
+padding:10px;
+}
+
+.commission{
+text-align:center;
+background:#e9ecef;
+}
+
+footer{
+background:#1c2331;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.modal{
+display:none;
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+top:0;
+left:0;
+}
+
+.modal-content{
+background:white;
+width:400px;
+margin:100px auto;
+padding:30px;
+border-radius:10px;
+}
+
+.modal-content input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+.modal-content button{
+width:100%;
+padding:10px;
+background:#1c2331;
+color:white;
+border:none;
+}
+
+.close-btn{
+float:right;
+font-size:25px;
+cursor:pointer;
+}

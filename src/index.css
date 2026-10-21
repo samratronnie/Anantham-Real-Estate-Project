@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #f9b234;
+  --dark-color: #1c2331;
+  --bg-light: #f8f9fa;
+  --gray-subtle: #e9ecef;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-light);
+  color: #212529;
+}
+
+/* Custom styles matching original Anantham CSS with interactive polish */
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #f9b234;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-btn {
+  background: #f9b234;
+  color: #1c2331;
+  font-weight: 600;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+.post-btn:hover {
+  background: #e5a12b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 178, 52, 0.35);
+}
+
+.hero {
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url('https://images.unsplash.com/photo-1560518883-ce09059eeffa');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 12px 25px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.primary-btn {
+  background: #f9b234;
+  color: #1c2331;
+}
+.primary-btn:hover {
+  background: #e5a12b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(249, 178, 52, 0.4);
+}
+
+.secondary-btn {
+  background: white;
+  color: #1c2331;
+}
+.secondary-btn:hover {
+  background: #f1f3f5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
+}
+
+.category-card {
+  background: white;
+  padding: 32px 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  border-color: #f9b234;
+}
+.category-card.active {
+  border-color: #f9b234;
+  background: #fffdf7;
+  box-shadow: 0 4px 16px rgba(249, 178, 52, 0.25);
+}
+
+.listing-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #edf2f7;
+}
+.listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.listing-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.listing-card:hover img {
+  transform: scale(1.02);
+}
+
+.plan-card {
+  background: white;
+  padding: 40px;
+  text-align: center;
+  max-width: 480px;
+  margin: auto;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 2px solid #f9b234;
+  position: relative;
+}
+
+.commission {
+  text-align: center;
+  background: #e9ecef;
+  padding: 50px 10%;
+}
+
+/* Modal styling */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.modal-content-box {
+  background: white;
+  width: 100%;
+  max-width: 460px;
+  padding: 32px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f3f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

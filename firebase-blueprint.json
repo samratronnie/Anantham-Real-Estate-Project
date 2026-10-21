@@ -1,0 +1,186 @@
+{
+  "entities": {
+    "Listing": {
+      "title": "Listing",
+      "description": "A marketplace item listing for sale, rent, or trade",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the listing"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title or headline of the listing",
+          "minLength": 3,
+          "maxLength": 100
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the listing",
+          "enum": ["Land", "House", "Car", "Bike", "Commercial", "Household", "Curios"]
+        },
+        "location": {
+          "type": "string",
+          "description": "City and state location",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "price": {
+          "type": "number",
+          "description": "Price in Indian Rupees"
+        },
+        "priceFormatted": {
+          "type": "string",
+          "description": "Formatted price label with currency symbols"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL to image thumbnail",
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the listing",
+          "maxLength": 1000
+        },
+        "sellerName": {
+          "type": "string",
+          "description": "Name of the seller or broker",
+          "maxLength": 100
+        },
+        "sellerContact": {
+          "type": "string",
+          "description": "Phone number or contact method of the seller",
+          "maxLength": 50
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of creation"
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether listing is featured on the homepage"
+        }
+      },
+      "required": ["id", "title", "category", "location", "price", "createdAt"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Appointment booking request made by a buyer for a listing",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique appointment identifier"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Full name of the requester",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the requester",
+          "format": "email",
+          "maxLength": 150
+        },
+        "phone": {
+          "type": "string",
+          "description": "Mobile phone number of the requester",
+          "minLength": 10,
+          "maxLength": 15
+        },
+        "date": {
+          "type": "string",
+          "description": "Preferred appointment date (YYYY-MM-DD)"
+        },
+        "listingId": {
+          "type": "string",
+          "description": "ID of the listing being inspected"
+        },
+        "listingTitle": {
+          "type": "string",
+          "description": "Title of the listing for quick reference",
+          "maxLength": 150
+        },
+        "listingLocation": {
+          "type": "string",
+          "description": "Location of the listing",
+          "maxLength": 100
+        },
+        "status": {
+          "type": "string",
+          "description": "Booking status",
+          "enum": ["pending", "confirmed", "cancelled"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when appointment was placed"
+        }
+      },
+      "required": ["id", "fullName", "email", "phone", "date", "listingId", "status", "createdAt"]
+    },
+    "Subscription": {
+      "title": "Subscription",
+      "description": "Seller membership plan subscription record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique subscription ID"
+        },
+        "planName": {
+          "type": "string",
+          "description": "Plan name",
+          "maxLength": 50
+        },
+        "price": {
+          "type": "number",
+          "description": "Monthly price in Rupees"
+        },
+        "subscriberName": {
+          "type": "string",
+          "description": "Name of the subscribing seller",
+          "maxLength": 100
+        },
+        "subscriberEmail": {
+          "type": "string",
+          "description": "Email of the subscriber",
+          "maxLength": 150
+        },
+        "status": {
+          "type": "string",
+          "description": "Subscription status",
+          "enum": ["active", "cancelled"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when subscribed"
+        }
+      },
+      "required": ["id", "planName", "price", "subscriberName", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/listings/{listingId}": {
+      "schema": {
+        "$ref": "#/entities/Listing"
+      },
+      "description": "Marketplace listings for properties, vehicles, household items, and antiques"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": {
+        "$ref": "#/entities/Appointment"
+      },
+      "description": "Buyer appointment bookings for viewing listings"
+    },
+    "/subscriptions/{subscriptionId}": {
+      "schema": {
+        "$ref": "#/entities/Subscription"
+      },
+      "description": "Seller subscription tiers"
+    }
+  }
+}

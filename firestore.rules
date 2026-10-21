@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidListing(data) {
+      return data.keys().hasAll(['id', 'title', 'category', 'location', 'price', 'createdAt']) &&
+        data.keys().hasOnly(['id', 'title', 'category', 'location', 'price', 'priceFormatted', 'imageUrl', 'description', 'sellerName', 'sellerContact', 'createdAt', 'featured']) &&
+        data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+        data.title is string && data.title.size() >= 3 && data.title.size() <= 100 &&
+        data.category in ['Land', 'House', 'Car', 'Bike', 'Commercial', 'Household', 'Curios'] &&
+        data.location is string && data.location.size() >= 2 && data.location.size() <= 100 &&
+        data.price is number && data.price >= 0 &&
+        (!('priceFormatted' in data) || (data.priceFormatted is string && data.priceFormatted.size() <= 50)) &&
+        (!('imageUrl' in data) || (data.imageUrl is string && data.imageUrl.size() <= 500)) &&
+        (!('description' in data) || (data.description is string && data.description.size() <= 1000)) &&
+        (!('sellerName' in data) || (data.sellerName is string && data.sellerName.size() <= 100)) &&
+        (!('sellerContact' in data) || (data.sellerContact is string && data.sellerContact.size() <= 50)) &&
+        data.createdAt is string && data.createdAt.size() <= 40 &&
+        (!('featured' in data) || data.featured is bool);
+    }
+
+    function isValidAppointment(data) {
+      return data.keys().hasAll(['id', 'fullName', 'email', 'phone', 'date', 'listingId', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['id', 'fullName', 'email', 'phone', 'date', 'listingId', 'listingTitle', 'listingLocation', 'status', 'createdAt']) &&
+        data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+        data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 100 &&
+        data.email is string && data.email.size() >= 5 && data.email.size() <= 150 && data.email.matches('^[^@]+@[^@]+\\.[^@]+$') &&
+        data.phone is string && data.phone.size() >= 10 && data.phone.size() <= 15 &&
+        data.date is string && data.date.size() >= 8 && data.date.size() <= 20 &&
+        data.listingId is string && data.listingId.size() > 0 && data.listingId.size() <= 128 &&
+        (!('listingTitle' in data) || (data.listingTitle is string && data.listingTitle.size() <= 150)) &&
+        (!('listingLocation' in data) || (data.listingLocation is string && data.listingLocation.size() <= 100)) &&
+        data.status in ['pending', 'confirmed', 'cancelled'] &&
+        data.createdAt is string && data.createdAt.size() <= 40;
+    }
+
+    function isValidSubscription(data) {
+      return data.keys().hasAll(['id', 'planName', 'price', 'subscriberName', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['id', 'planName', 'price', 'subscriberName', 'subscriberEmail', 'status', 'createdAt']) &&
+        data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+        data.planName is string && data.planName.size() <= 50 &&
+        data.price is number && data.price >= 0 &&
+        data.subscriberName is string && data.subscriberName.size() <= 100 &&
+        (!('subscriberEmail' in data) || (data.subscriberEmail is string && data.subscriberEmail.size() <= 150)) &&
+        data.status in ['active', 'cancelled'] &&
+        data.createdAt is string && data.createdAt.size() <= 40;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /listings/{listingId} {
+      allow read: if true;
+      allow create: if isValidId(listingId) && isValidListing(incoming()) && incoming().id == listingId;
+      allow update: if isValidId(listingId) && isValidListing(incoming()) &&
+        incoming().id == existing().id &&
+        incoming().createdAt == existing().createdAt;
+      allow delete: if isValidId(listingId);
+    }
+
+    match /appointments/{appointmentId} {
+      allow read: if true;
+      allow create: if isValidId(appointmentId) && isValidAppointment(incoming()) && incoming().id == appointmentId;
+      allow update: if isValidId(appointmentId) && isValidAppointment(incoming()) &&
+        incoming().id == existing().id &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().listingId == existing().listingId;
+      allow delete: if isValidId(appointmentId);
+    }
+
+    match /subscriptions/{subscriptionId} {
+      allow read: if true;
+      allow create: if isValidId(subscriptionId) && isValidSubscription(incoming()) && incoming().id == subscriptionId;
+      allow update: if isValidId(subscriptionId) && isValidSubscription(incoming()) &&
+        incoming().id == existing().id &&
+        incoming().createdAt == existing().createdAt;
+      allow delete: if isValidId(subscriptionId);
+    }
+  }
+}
